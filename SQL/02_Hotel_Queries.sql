@@ -32,8 +32,10 @@ GROUP BY item_id
 ORDER BY total_qty DESC;
 
 -- Q5 Find second highest bill
-SELECT bill_id, SUM(item_quantity) as total
-FROM booking_commercials
-GROUP BY bill_id
-ORDER BY total DESC
+SELECT bc.bill_id,
+       SUM(bc.item_quantity * i.item_rate) AS total_amount
+FROM booking_commercials bc
+JOIN items i ON bc.item_id = i.item_id
+GROUP BY bc.bill_id
+ORDER BY total_amount DESC
 LIMIT 1 OFFSET 1;

@@ -26,9 +26,10 @@ GROUP BY bc.bill_id
 HAVING SUM(bc.item_quantity * i.item_rate) > 1000;
 
 -- Q4. Most & least ordered item per month
-SELECT item_id, SUM(item_quantity) as total_qty
+SELECT item_id, SUM(item_quantity) AS total_qty
 FROM booking_commercials
-GROUP BY item_id;
+GROUP BY item_id
+ORDER BY total_qty DESC;
 
 -- Q5 Find second highest bill
 SELECT bill_id, SUM(item_quantity) as total
